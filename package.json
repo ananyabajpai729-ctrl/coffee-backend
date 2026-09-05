@@ -2,6 +2,7 @@
   "name": "coffee-backend",
   "version": "1.0.0",
   "description": "backend of a video streaming platform",
+  "type": "commonjs",
   "keywords": [
     "coffee",
     "backend"
@@ -16,9 +17,11 @@
   },
   "license": "ISC",
   "author": "ananya bajpai",
-  "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.14"
   }
 }
