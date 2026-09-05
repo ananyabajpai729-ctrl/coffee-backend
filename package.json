@@ -1,0 +1,24 @@
+{
+  "name": "coffee-backend",
+  "version": "1.0.0",
+  "description": "backend of a video streaming platform",
+  "keywords": [
+    "coffee",
+    "backend"
+  ],
+  "homepage": "https://github.com/ananyabajpai729-ctrl/coffee-backend#readme",
+  "bugs": {
+    "url": "https://github.com/ananyabajpai729-ctrl/coffee-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ananyabajpai729-ctrl/coffee-backend.git"
+  },
+  "license": "ISC",
+  "author": "ananya bajpai",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
