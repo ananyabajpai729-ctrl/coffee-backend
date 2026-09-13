@@ -2,12 +2,12 @@
   "name": "coffee-backend",
   "version": "1.0.0",
   "description": "backend of a video streaming platform",
-  "type": "commonjs",
+  "type": "module",
   "keywords": [
     "coffee",
     "backend"
   ],
-  "homepage": "https://github.com/ananyabajpai729-ctrl/coffee-backend#readme",
+  "homepage": "https://github.com",
   "bugs": {
     "url": "https://github.com/ananyabajpai729-ctrl/coffee-backend/issues"
   },
@@ -27,6 +27,6 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.10.0"
+    "mongoose": "^9.1.0"
   }
 }
