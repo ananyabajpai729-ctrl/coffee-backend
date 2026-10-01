@@ -1,7 +1,7 @@
 import {asyncHandler} from "../utils/asyncHandler.js";
 import {ApiError} from "../utils/ApiError.js";
 import {User} from "../models/user.models.js";
-import {uploadOnCloudinary} from "../utils/Cloudinary.js";
+import {uploadOnCloudinary, deleteFromCloudinary} from "../utils/Cloudinary.js";
 import {ApiResponse} from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
 
@@ -244,6 +244,12 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
     if(!avatarLocalPath){
         throw new ApiError(400, "Avatar file is required");
     }
+    //TODO: delete old avatar from cloudinary
+    const oldAvatar = req.user?.avatar;
+    if(!oldAvatar){
+        throw new ApiError(400, "Old avatar not found");
+    }
+    await deleteFromCloudinary(oldAvatar);
 
     const avatar = await uploadOnCloudinary(avatarLocalPath);
 
@@ -271,6 +277,11 @@ const updateUserCoverImage = asyncHandler(async(req, res) => {
     if(!coverImageLocalPath){
         throw new ApiError(400, "Cover image file is required");
     }
+    const oldCoverImage = req.user?.coverImage;
+    if(!oldCoverImage){
+        throw new ApiError(400, "Old cover image not found");
+    }
+    await deleteFromCloudinary(oldCoverImage);
 
     const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
