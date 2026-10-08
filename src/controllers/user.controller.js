@@ -4,6 +4,7 @@ import {User} from "../models/user.models.js";
 import {uploadOnCloudinary, deleteFromCloudinary} from "../utils/Cloudinary.js";
 import {ApiResponse} from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 
 const generateAccessAndRefreshTokens = async(userId)=>{
@@ -139,7 +140,7 @@ const logoutUser = asyncHandler(async(req,res) => {
             }
         },
         {
-            new: true
+            returnDocument: "after"
         }
     )
 
@@ -193,9 +194,9 @@ const refreshAccessToken = asyncHandler(async(req, res) => {
 })
 
 const changeCurrentPassword = asyncHandler(async(req, res) => {
-    const{oldPassword, newPassword} = req.body;
+    const {oldPassword, newPassword} = req.body;
 
-    const user = await User.findById(req.user?.id);
+    const user = await User.findById(req.user?._id);
 
     const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
 
@@ -224,7 +225,7 @@ const updateAccountDetails = asyncHandler(async(req, res) => {
         throw new ApiError(400, "All fields are required");
     }
 
-    const user = awaitUser.findByIdAndUpdate(
+    const user = await User.findByIdAndUpdate(
         req.user?._id,
         {
             $set:{
@@ -300,7 +301,7 @@ const updateUserCoverImage = asyncHandler(async(req, res) => {
     ).select("-password -refreshToken");
 
     return res.status(200).json(
-        new ApiResponse(200, "User avatar updated successfully", {avatar: avatar.url})
+        new ApiResponse(200, "User coverimage updated successfully", {coverImage: coverImage.url})
     )
 })
 
